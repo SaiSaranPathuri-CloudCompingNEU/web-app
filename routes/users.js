@@ -6,8 +6,8 @@ router.get("/", (req, res) => {
   res.status(200).json({ msg: "show all users" });
 });
 
-router.get("/healthz", (req, res) => {
-  res.status(200).json({ msg: "Heartbeat" });
+router.get("/testStatus", (req, res) => {
+  res.status(200).json({ msg: "APP WORKING!" });
 });
 
 router.route("/v1/user/:id").get(User.verify);
