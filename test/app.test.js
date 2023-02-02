@@ -1,25 +1,18 @@
 const request = require("supertest");
-const app = require('../App.js');
+const app = require("../App.js");
 
+let expect = require("chai").expect;
 
-let expect = require('chai').expect;
-
-describe('/POST user', function(){
-
-it('it should have no duplicates', async function(){
+describe("/get healthz", function () {
+  it("it should return the heartbeat", async function () {
     let user = {
-       
-        "username": "jack@gmail.com",
-        "password": "Jack",
-        "firstname": "Jack",
-        "lastname": "Jack",
-    }
-    const response = await request(app).post('/v1/user').send(user);
+      username: "jack@gmail.com",
+      password: "Jack",
+      firstname: "Jack",
+      lastname: "Jack",
+    };
+    const response = await request(app).get("/healthz").send(user);
 
-    expect (response.status).to.eql(400);
-} )
-
-})
-
-
-
+    expect(response.status).to.eql(200);
+  });
+});
