@@ -3,13 +3,13 @@ const app = require("../App.js");
 
 let expect = require("chai").expect;
 
-describe("/get healthz", function () {
-  it("it should return the heartbeat", async function () {
+describe("/get testStatus", function () {
+  it("Your App is working GOOD!!", async function () {
     let user = {
-      username: "jack@gmail.com",
-      password: "Jack",
-      firstname: "Jack",
-      lastname: "Jack",
+      username: "demo@demo.com",
+      password: "test123",
+      firstname: "Alpha",
+      lastname: "Beta",
     };
     const response = await request(app).get("/healthz").send(user);
 
