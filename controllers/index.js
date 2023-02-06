@@ -1,6 +1,5 @@
 const controllers = {};
 
-controllers.Users = require('./userscontroller');
+controllers.Users = require("./userscontroller");
 
 module.exports = controllers;
-
