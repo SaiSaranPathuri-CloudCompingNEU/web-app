@@ -3,15 +3,15 @@ const app = require("../App.js");
 
 let expect = require("chai").expect;
 
-describe("/get testStatus", function () {
+describe("/get healthz", function () {
   it("Your App is working GOOD!!", async function () {
     let user = {
       username: "test@gmail.com",
       password: "Test123",
-      firstname: "Test",
-      lastname: "Test",
+      first_name: "Test",
+      last_name: "Test",
     };
-    const response = await request(app).get("/testStatus").send(user);
+    const response = await request(app).get("/healthz").send(user);
 
     expect(response.status).to.eql(200);
   });
