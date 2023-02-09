@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../controllers/userscontroller");
-const Product = require("../controllers/ProductController");
+const Product = require("../controllers/productcontroller");
 
 router.get("/", (req, res) => {
   res.status(200).json({ msg: "show all users" });
