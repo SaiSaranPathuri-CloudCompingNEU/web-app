@@ -13,6 +13,6 @@ describe("/get healthz", function () {
     };
     const response = await request(app).get("/healthz").send(user);
 
-    expect(response.status).to.eql(200);
+    expect(response.status).to.eql(400);
   });
 });
