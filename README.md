@@ -48,3 +48,5 @@ Below are the dependencies used for building the project:
 "mysql2": "^3.1.0",
 "sequelize": "^6.28.0",
 "supertest": "^6.3.3"
+
+
