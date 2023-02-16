@@ -1,6 +1,6 @@
 # web-app
 
-web-app - NodeJS Application
+web-app - NodeJS Application for testing
 
 # CSYE 6225 Assignment 1
 
