@@ -1,5 +1,5 @@
 [Unit]
-Description=Express_App
+Description=WebApp
 After=cloud-final.service
 
 [Service]
@@ -9,7 +9,7 @@ Restart=always
 RestartSec=10
 StandardOutput=syslog
 StandardError=syslog
-SyslogIdentifier=Express_App-1
+SyslogIdentifier=webapp
 User=ec2-user
 
 [Install]
