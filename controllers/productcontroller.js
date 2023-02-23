@@ -48,7 +48,7 @@ module.exports = {
         if (typeof req.body.quantity !== "number") {
           return res.sendStatus(400);
         }
-        if (req.body.quantity < 0) {
+        if (req.body.quantity < 0 || req.body.quantity > 100) {
           return res.sendStatus(400);
         }
 
@@ -303,7 +303,12 @@ module.exports = {
             manufacturer = list_1.manufacturer;
           }
 
-          if (typeof req.body.sku !== "undefined") {
+          if (
+            typeof req.body.sku !== "undefined" &&
+            req.body.sku !== "" &&
+            req.body.sku !== null &&
+            req.body.sku
+          ) {
             sku = req.body.sku;
             const search_sku = req.body.sku;
             const list_dups = await Product.findOne({
