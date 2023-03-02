@@ -48,7 +48,7 @@ module.exports = {
         if (typeof req.body.quantity !== "number") {
           return res.sendStatus(400);
         }
-        if (req.body.quantity < 0 || req.body.quantity > 100) {
+        if (req.body.quantity < 0) {
           return res.sendStatus(400);
         }
 
@@ -168,7 +168,6 @@ module.exports = {
             return res.sendStatus(400);
           }
 
-          console.log(typeof req.body.date_added);
           if (
             typeof req.body.date_added !== "undefined" ||
             typeof req.body.date_last_updated !== "undefined" ||
@@ -182,7 +181,7 @@ module.exports = {
           const list_sku = await Product.findOne({
             where: { sku: search_sku },
           });
-          if (list_sku === null) {
+          if (list_sku === undefined || list_sku === null) {
             try {
               await Product.update(
                 {
@@ -201,21 +200,26 @@ module.exports = {
               res.sendStatus(400);
             }
           } else {
-            try {
-              await Product.update(
-                {
-                  name: req.body.name,
-                  description: req.body.description,
-                  sku: req.body.sku,
-                  quantity: req.body.quantity,
-                  manufacturer: req.body.manufacturer,
-                },
-                {
-                  where: { id: search_code },
-                }
-              );
-              res.sendStatus(204);
-            } catch (e) {
+            console.log(req.params.id, list_sku.id);
+            if (req.params.id == list_sku.id) {
+              try {
+                await Product.update(
+                  {
+                    name: req.body.name,
+                    description: req.body.description,
+                    sku: req.body.sku,
+                    quantity: req.body.quantity,
+                    manufacturer: req.body.manufacturer,
+                  },
+                  {
+                    where: { id: search_code },
+                  }
+                );
+                return res.sendStatus(204);
+              } catch (e) {
+                res.sendStatus(400);
+              }
+            } else {
               res.sendStatus(400);
             }
           }
@@ -303,12 +307,7 @@ module.exports = {
             manufacturer = list_1.manufacturer;
           }
 
-          if (
-            typeof req.body.sku !== "undefined" &&
-            req.body.sku !== "" &&
-            req.body.sku !== null &&
-            req.body.sku
-          ) {
+          if (typeof req.body.sku !== "undefined") {
             sku = req.body.sku;
             const search_sku = req.body.sku;
             const list_dups = await Product.findOne({
@@ -335,21 +334,25 @@ module.exports = {
                 res.sendStatus(400);
               }
             } else {
-              try {
-                await Product.update(
-                  {
-                    name: req.body.name,
-                    description: req.body.description,
-                    quantity: req.body.quantity,
-                    manufacturer: req.body.manufacturer,
-                  },
-                  {
-                    where: { id: search_code },
-                  }
-                );
-                res.sendStatus(204);
-              } catch (e) {
-                res.sendStatus(400);
+              if (req.params.id == list_dups.id) {
+                try {
+                  await Product.update(
+                    {
+                      name: req.body.name,
+                      description: req.body.description,
+                      quantity: req.body.quantity,
+                      manufacturer: req.body.manufacturer,
+                    },
+                    {
+                      where: { id: search_code },
+                    }
+                  );
+                  res.sendStatus(204);
+                } catch (e) {
+                  res.sendStatus(400);
+                }
+              } else {
+                return res.sendStatus(400);
               }
             }
           } else {

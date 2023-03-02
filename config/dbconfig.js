@@ -1,7 +1,9 @@
 module.exports = {
   HOST: "localhost",
   USER: "root",
-  PASSWORD: "password",
-  DATABASE: "cloud_app",
+  PASSWORD: "password", //S@1s@r@nPathuri
+  DATABASE: "ExpressApp",
+  //   PASSWORD: "password", //S@1s@r@nPathuri
+  //   DATABASE: "cloud_app",
   DIALECT: "mysql",
 };
