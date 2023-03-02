@@ -1,20 +1,18 @@
-# web-app
+# Express_App
 
-web-app - NodeJS Application for
-
-# CSYE 6225 Assignment 1
+# CSYE 6225 Assignment 4
 
 This assignment is for creating rest end point for checking health end point for get end point, user endpoints for put, post and get methods.
 
 ## Softwares Used:
 
-1. Any IDE/ text editor of choice.
+1. VSCode.
 2. Postman
 3. SQLWorkBench
 
 ## How to Build?
 
-1. The project resides on the repo web-app in SaiSaranPathuri-CloudCompingNEU organization.
+1. The project resides on the repo webapp in SaiSaranPathuri-CloudCompingNEU organization.
 2. To make changes to the repo code, fork the repo and clone it locally by running the below command: `git clone <link to forked repo>`
 3. After cloning the repo locally run the below command after opening the project in IDE of choice:
    `npm i`
