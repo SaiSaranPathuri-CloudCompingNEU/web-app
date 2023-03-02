@@ -8,7 +8,7 @@ describe("/get healthz", function () {
     let user = {
       username: "jack@gmail.com",
       password: "Jack",
-      firstname: "Jack",
+      firstname: "test",
       lastname: "Test",
     };
     const response = await request(app).get("/healthz").send(user);
