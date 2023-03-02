@@ -24,7 +24,7 @@
 function getFileStream(fileKey) {
   const downloadParams = {
     Key: fileKey,
-    Bucket: "amazon-aws-bucket",
+    Bucket: "amazon-aws-bucket-demo",
   };
   return s3.getObject(downloadParams).createReadStream();
 }
