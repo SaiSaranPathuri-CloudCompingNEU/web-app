@@ -82,7 +82,7 @@ build {
     destination = "/home/ec2-user/webapp.service"
   }
   provisioner "shell" {
-    script = "./packer/script.sh"
+    script = "./packer/script.sh
 
   }
 }
