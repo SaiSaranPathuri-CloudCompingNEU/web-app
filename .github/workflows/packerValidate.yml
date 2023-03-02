@@ -25,18 +25,20 @@ jobs:
           path: dist/webapp.zip
 
       - name: Packer Init
-        run: packer init ./packer/firstAMI.pkr.hcl
+        run: packer init .
 
       - name: Configure AWS Credentials and build packer
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key-id: "AKIAS4PTLG2BWNPABPHR"
+         aws-access-key-id: "AKIAS4PTLG2BWNPABPHR"
           aws-secret-access-key: "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"
           aws-region: "us-east-1"
 
       - name: Packer Validate
-        run: packer validate ./packer/firstAMI.pkr.hcl
+        run: packer validate .
 
       - name: Clean up
         run: |
           rm -r dist
+
+

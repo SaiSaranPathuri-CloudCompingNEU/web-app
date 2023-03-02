@@ -1,18 +1,25 @@
 const request = require("supertest");
-const app = require("../App.js");
+const app = require('../App.js');
 
-let expect = require("chai").expect;
 
-describe("/get healthz", function () {
-  it("Your App is working GOOD!!", async function () {
+let expect = require('chai').expect;
+
+describe('/get healthz', function(){
+
+it('it should return the heartbeat', async function(){
     let user = {
-      username: "test@gmail.com",
-      password: "Test123",
-      first_name: "Test",
-      last_name: "Test",
-    };
-    const response = await request(app).get("/healthz").send(user);
+       
+        "username": "jack@gmail.com",
+        "password": "Jack",
+        "firstname": "Jack",
+        "lastname": "Jack",
+    }
+    const response = await request(app).get('/healthz').send(user);
 
-    expect(response.status).to.eql(200);
-  });
-});
+    expect (response.status).to.eql(200);
+} )
+
+})
+
+
+
