@@ -10,33 +10,33 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-        
-    - name: Zip repository
-      run: |
-        mkdir -p dist
-        git archive --format=zip HEAD -o dist/Express_App-1.zip
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Upload artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: my-repo
-        path: dist/Express_App-1.zip
+      - name: Zip repository
+        run: |
+          mkdir -p dist
+          git archive --format=zip HEAD -o dist/Express_App-1.zip
 
-    - name: Packer Init
-      run: packer init .
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: my-repo
+          path: dist/Express_App-1.zip
 
-    - name: Configure AWS Credentials and build packer
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-          aws-access-key-id: "AKIA5XTV4KA7MH3V7SQI"
-          aws-secret-access-key: "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"
-          aws-region: 'us-east-1'
+      - name: Packer Init
+        run: packer init .
 
-    - name: Packer Validate
-      run: packer validate .
+      - name: Configure AWS Credentials and build packer
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: "AKIAS4PTLG2BWNPABPHR"
+          aws-secret-access-key: "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"
+          aws-region: "us-east-1"
 
-    - name: Clean up
-      run: |
-        rm -r dist
+      - name: Packer Validate
+        run: packer validate .
+
+      - name: Clean up
+        run: |
+          rm -r dist
