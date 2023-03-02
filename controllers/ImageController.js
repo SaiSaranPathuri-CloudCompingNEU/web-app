@@ -156,7 +156,7 @@ const vUser = (username === name) ? true : false;
       const list_products = await Product.findOne({ where: { id: req.params.productid } });
 
      
-      if(list_products === null  || list_products === undefined){
+      if(list_products === "null"  || list_products === "undefined"){
           return res.sendStatus(400);
       }
       if(owner_user_id != list_products.UserId){
@@ -164,7 +164,7 @@ const vUser = (username === name) ? true : false;
       }
       const image_data =  await Image.findOne({where: {id:req.params.id}});
       console.log(image_data);
-      if(image_data === "null"|| image_data == "undefined" ){
+      if(image_data === "null"|| image_data == "undefined" || typeof image_data === "undefined"|| typeof image_data === "null" ){
         return res.sendStatus(400);
       }
       if(image_data.ProductId != req.params.productid){
@@ -294,7 +294,7 @@ const vUser = (username === name) ? true : false;
       const s3Location = image_data.s3_bucket_path.split("/").pop();
 
       const s3 = new aws.S3 ({
-        region: process.env.region,
+        region: process.env.S3_REGION,
         secretAccessKey: process.env.secretAccessKey,
         accessKeyId: process.env.accessKeyId
         
@@ -385,7 +385,7 @@ const vUser = (username === name) ? true : false;
       imgIds.push(image.id)
     });
     const s3 = new aws.S3 ({
-      region: process.env.region,
+      region: process.env.S3_REGION,
       secretAccessKey: process.env.secretAccessKey,
       accessKeyId: process.env.accessKeyId
       
@@ -408,12 +408,23 @@ const vUser = (username === name) ? true : false;
           //   return res.sendStatus(400);
           // } 
           //   return res.sendStatus(200);
-          
+          const list_prod = await Product.findOne({ where: { id: req.params.productid } });
+
+          if(list_prod === null || list_prod === undefined){
+            return res.sendStatus(404);
+        }
+        try{await list_prod.destroy();
+         return  res.sendStatus(204);
+      }catch(e){
+          return res.sendStatus(400);
+      }
+
+
         }
 
       });
 
-      return res.sendStatus(200);
+      // return res.sendStatus(204);
 
   }
 
