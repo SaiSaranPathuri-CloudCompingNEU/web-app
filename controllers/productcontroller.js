@@ -11,7 +11,7 @@ module.exports = {
 
 
         if(req.headers.authorization === undefined){
-           return  res.sendStatus(400);
+           return  res.sendStatus(401);
         }
     
            
@@ -29,7 +29,7 @@ module.exports = {
 
 
         if (list_1 === null  || list_1 === undefined){
-            return res.status(400).json({ msg: " User Not Found" });
+            return res.status(401).json({ msg: " User Not Found" });
         }
         else{
        
@@ -41,7 +41,9 @@ module.exports = {
         if ( vUser && verified ){
 
 
-            const{name,description,sku,manufacturer,quantity} = req.body;
+            const {name,description,sku,manufacturer,quantity} = req.body;
+
+
             if(typeof req.body.id !== "undefined" || typeof req.body.date_added !== "undefined"|| typeof req.body.date_last_updated !== "undefined"){
                 return res.sendStatus(400);
             }
@@ -50,13 +52,16 @@ module.exports = {
                     if(typeof(req.body.quantity) !== "number") {
                         return res.sendStatus(400);
                     }
-                    if(req.body.quantity < 0 ){
+                    if(req.body.quantity < 0 || req.body.quantity > 100 ){
                         return res.sendStatus(400);
                     }
 
-
                     if(name === "null" || sku === "null" || description === "null" || manufacturer === "null" ){
                      return res.sendStatus(400);
+                    }
+
+                    if(name.trim() === ""|| sku.trim()=== ""|| description.trim() === ""|| manufacturer.trim() === ""){
+                        return res.sendStatus(400);
                     }
                    
         
@@ -128,7 +133,7 @@ update: async (req,res)=>{
 
 
     if(req.headers.authorization === undefined){
-        return  res.sendStatus(400);
+        return  res.sendStatus(401);
      }
  
         
@@ -258,7 +263,7 @@ update: async (req,res)=>{
 patch : async (req,res) =>{
 
     if(req.headers.authorization === undefined){
-        return  res.sendStatus(400);
+        return  res.sendStatus(401);
      }
  
         
@@ -422,7 +427,7 @@ delete: async (req,res)=>{
 
 
     if(req.headers.authorization === undefined){
-        return  res.sendStatus(400);
+        return  res.sendStatus(401);
      }
  
         
