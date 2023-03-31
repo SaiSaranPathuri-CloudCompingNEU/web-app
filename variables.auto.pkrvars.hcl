@@ -7,7 +7,7 @@ virtual_type="hvm"
 ami_name="amazon-linux-2-node-mysql-ami"
 ssh_username="ec2-user"
 ssh_timeout="2h"
-ami_user="117079856859"
+ami_user="198615709315"
 owner="amazon"
 
 
