@@ -41,8 +41,8 @@ jobs:
       - name: Configure AWS Credentials and build packer
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key-id: ${{ secrets.DEMO_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.DEMO_SECRET_ACCESS_KEY }}
+          aws-access-key-id: "AKIAWAMNEHLCDPGAQMEG"
+          aws-secret-access-key: "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"
           aws-region: "us-east-1"
 
       - name: Update launch template and refresh auto scaling group
