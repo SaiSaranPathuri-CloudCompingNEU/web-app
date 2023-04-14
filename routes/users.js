@@ -39,7 +39,23 @@ router.get('/healthz', (req,res)=> {
     
 });
 
+<<<<<<< Updated upstream
 router.route('/v1/user/:id').get(User.verify);
+=======
+router.get("/health", (req, res) => {
+  try {
+    statsd.increment("endpoint_all");
+    statsd.increment("endpoint_health");
+    logger.info("Health Received Health API call");
+    return res.status(200).json({ msg: "Heartbeatzzz" });
+  } catch (error) {
+    logger.warn("Healt API Error Caught in health call" + error);
+    return response.sendStatus(400);
+  }
+});
+
+router.route("/v1/user/:id").get(User.verify);
+>>>>>>> Stashed changes
 
 router.route('/v1/user').post(User.create);
 
