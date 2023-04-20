@@ -46,7 +46,7 @@ router.get("/health", (req, res) => {
   }
 });
 
-router.route("/v1/user/:id").get(User.verify);
+router.route("/v3/user/:id").get(User.verify);
 
 router.route("/v1/user").post(User.create);
 
